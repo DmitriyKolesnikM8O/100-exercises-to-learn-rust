@@ -3,7 +3,15 @@ pub fn factorial(n: u32) -> u32 {
     for i in 1..=n {
         // Use saturating multiplication to stop at the maximum value of u32
         // rather than overflowing and wrapping around
+        let control = result * i;
+        let check = result.saturating_add(control);
+        if check == u32::MAX {
+            return check;
+        }
+
         result *= i;
+        
+        
     }
     result
 }
