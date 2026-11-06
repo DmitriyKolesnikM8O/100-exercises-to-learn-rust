@@ -11,3 +11,73 @@
 // Integration here has a very specific meaning: they test **the public API** of your project.
 // You'll need to pay attention to the visibility of your types and methods; integration
 // tests can't access private or `pub(crate)` items.
+
+
+pub struct Order {
+    product_name: String,
+    quantity: u32,
+    unit_price: u32
+}
+
+impl Order {
+    pub fn total(&self) -> u32 {
+        self.quantity * self.unit_price
+    }
+
+    pub fn new(new_product_name: String, new_quantity: u32, new_unit_price: u32) -> Order {
+        if new_product_name.is_empty() || new_product_name.len() > 300 {
+            panic!("Something wrong with product_name!")
+        }
+
+        if new_quantity <= 0 {
+            panic!("Something wrong with quantity!")
+        }
+
+        if new_unit_price <= 0 {
+            panic!("Something wrong with unit_price!")
+        }
+
+        Order {
+            product_name: new_product_name,
+            quantity: new_quantity,
+            unit_price: new_unit_price
+        }
+
+    }
+
+    pub fn product_name(&self) -> &str {
+        &self.product_name
+    }
+
+    pub fn quantity(&self) -> &u32 {
+        &self.quantity
+    }
+
+    pub fn unit_price(&self) -> &u32 {
+        &self.unit_price
+    }
+
+    pub fn set_product_name(&mut self, new_product_name: String) {
+        if new_product_name.is_empty() || new_product_name.len() > 300 {
+            panic!("Something wrong with product_name!")
+        }
+
+        self.product_name = new_product_name
+    }
+
+    pub fn set_quantity(&mut self, new_quantity: u32) {
+        if new_quantity <= 0 {
+            panic!("Something wrong with quantity!")
+        }
+
+        self.quantity = new_quantity
+    }
+
+    pub fn set_unit_price(&mut self, new_unit_price: u32) {
+        if new_unit_price <= 0 {
+            panic!("Something wrong with unit_price!")
+        }
+
+        self.unit_price = new_unit_price
+    }
+}
