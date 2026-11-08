@@ -4,6 +4,7 @@
 //   find it in the documentation for `String`.
 //   Can you figure out where it is defined and how to use it?
 
+
 pub struct Ticket {
     title: String,
     description: String,
@@ -12,11 +13,19 @@ pub struct Ticket {
 
 impl Ticket {
     pub fn title(&self) -> &str {
-        todo!()
+        let mut slice: &str = &self.title[1..];
+
+        slice = slice.trim();
+
+        slice
     }
 
     pub fn description(&self) -> &str {
-        todo!()
+        let mut slice: &str = &self.description[1..];
+
+        slice = slice.trim();
+
+        slice
     }
 }
 
