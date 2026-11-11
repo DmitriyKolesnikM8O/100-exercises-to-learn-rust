@@ -2,6 +2,30 @@
 //  unless a certain operation has been performed on it.
 //  You can see the expected API in the tests below.
 
+struct DropBomb {
+    is_used: bool,
+}
+
+impl DropBomb {
+    pub fn new() -> Self {
+        Self { is_used: false }
+    }
+
+    pub fn defuse(&mut self) {
+        self.is_used = true
+    }
+}
+
+impl Drop for DropBomb {
+    fn drop(&mut self) {
+        if !self.is_used {
+            panic!("Problem")
+        }
+        // We don't need to do anything here,
+        // it's enough to have an "empty" Drop implementation
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
