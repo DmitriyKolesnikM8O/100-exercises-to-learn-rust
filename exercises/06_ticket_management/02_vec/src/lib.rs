@@ -10,12 +10,36 @@
 //
 // We expect `fibonacci(0)` to return `0`, `fibonacci(1)` to return `1`,
 // `fibonacci(2)` to return `1`, and so on.
+// pub fn fibonacci(n: u32) -> u32 {
+//     // TODO: implement the `fibonacci` function
+//     //
+//     // Hint: use a `Vec` to memoize the results you have already calculated
+//     // so that you don't have to recalculate them several times.
+//     // let result: Vec<u32> = vec![0, 1, 1];
+
+//     if n == 0 {
+//         return 0;
+//     } else if n == 1 {
+//         return 1;
+//     } else {
+//         return fibonacci(n - 1) + fibonacci(n - 2);
+//     }
+// }
+
 pub fn fibonacci(n: u32) -> u32 {
     // TODO: implement the `fibonacci` function
     //
     // Hint: use a `Vec` to memoize the results you have already calculated
     // so that you don't have to recalculate them several times.
-    todo!()
+    // let result: Vec<u32> = vec![0, 1, 1];
+
+    let mut result: Vec<u32> = vec![0, 1];
+
+    for i in 2..=n {
+        result.push(result[(i - 1) as usize] + result[(i - 2) as usize]);
+    }
+
+    return result[n as usize];
 }
 
 #[cfg(test)]
